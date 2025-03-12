@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dramacool - Watch Dramas Online</title>
+    <style>
+        body {
+            background-color: #222;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            color: orange;
+            font-size: 50px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .header i {
+            color: green;
+        }
+
+        .search-bar input {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .menu {
+            background-color: orange;
+            padding: 10px;
+        }
+
+        .menu td {
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .menu td:hover {
+            background-color: darkorange;
+            cursor: pointer;
+        }
+
+        /* Responsive movie grid */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .movie-card {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 350px; /* Fixed height for better alignment */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .movie-card a {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: lightblue;
+        }
+
+        .movie-card a:hover {
+            color: cyan;
+        }
+
+        .footer {
+            background-color: black;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="header">DRAMAC<i>OO</i>L</h1>
+    <h3>Cool site for dramas</h3>
+
+    <div class="search-bar">
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search dramas...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div>
+        <table class="menu" width="75%" align="center">
+            <tr>
+                <td>Home</td>
+                <td>Drama List</td>
+                <td>Drama Movie</td>
+                <td>KShow</td>
+                <td>Popular Drama</td>
+                <td>Drama Calendar</td>
+                <td>DMCA Policy</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Movie Grid -->
+    <div class="movie-grid">
+        {% for movie in movies %}
+        <div class="movie-card">
+            <img src="{{ url_for('static', filename=movie.image) }}" alt="{{ movie.title }}">
+            <a href="{{ movie.link }}" target="_blank">{{ movie.title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Dramacool | Designed by Protogy</p>
+    </div>
+
+</body>
+</html>
